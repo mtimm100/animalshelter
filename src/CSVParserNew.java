@@ -48,63 +48,111 @@ public class CSVParserNew {
 		hour = new int[largeNum];
 		
 	}
-	public Hashtable<String, List<String>> convertDataToHashDTL(List<String> attributesToAdd){
+	/*
+	 * Return a list of Instance objects - each instance is an item in the training set
+	 */
+	public List<Instance> populateInstances(){
+		List<Instance> instances = new ArrayList<Instance>();
+		for(int i = 0; i < this.numAnimals; i++){
+			Hashtable<String, String> attributeValuePairs = new Hashtable<String, String>();
+			attributeValuePairs.put("hasName", hasName[i]);
+			attributeValuePairs.put("animalType", animalType[i]);
+			attributeValuePairs.put("intactness", intactness[i]);
+			attributeValuePairs.put("sex", sex[i]);
+			attributeValuePairs.put("age", age[i]);
+			attributeValuePairs.put("breed", breed[i]);
+			attributeValuePairs.put("color", color[i]);
+			Instance in = new Instance(attributeValuePairs);
+			
+			if(this.isTraining){
+				in.setOutcome(this.outcomeType[i]);
+			}
+			instances.add(in);
+		}
+		return instances;
+	}
+	/*
+	 * Return a hashtable mapping the name of each attribute to all the possible values that attribute can have 
+	 */
+	public Hashtable<String, List<String>> getAttributesAndPossibleValues(List<String> attributesToAdd){
 		Hashtable<String, List<String>> data = new Hashtable<String, List<String>>();
 		if(attributesToAdd.contains("hasName")){
 			List<String> l = new ArrayList<String>();
-			for(int i = 0; i < this.hasName.length; i++){
-				l.add(this.hasName[i]);
+			for(int i = 0; i < this.numAnimals; i++){
+				if(!l.contains(this.hasName[i])){
+					l.add(this.hasName[i]);
+				}
 			}
 			data.put("hasName", l);
 		}
 		if(attributesToAdd.contains("animalType")){
 			List<String> l = new ArrayList<String>();
-			for(int i = 0; i < this.animalType.length; i++){
-				l.add(this.animalType[i]);
+			for(int i = 0; i < this.numAnimals; i++){
+				if(!l.contains(this.animalType[i])){
+					l.add(this.animalType[i]);
+				}
 			}
 			data.put("animalType", l);
 		}
 		if(attributesToAdd.contains("intactness")){
 			List<String> l = new ArrayList<String>();
-			for(int i = 0; i < this.intactness.length; i++){
-				l.add(this.intactness[i]);
+			for(int i = 0; i < this.numAnimals; i++){
+				if(!l.contains(this.intactness[i])){
+					l.add(this.intactness[i]);
+				}
 			}
 			data.put("intactness", l);
 		}
 		if(attributesToAdd.contains("sex")){
 			List<String> l = new ArrayList<String>();
-			for(int i = 0; i < this.sex.length; i++){
-				l.add(this.sex[i]);
+			for(int i = 0; i < this.numAnimals; i++){
+				
+					//System.out.println("sex is " + this.sex[i]);
+				
+				if(!l.contains(this.sex[i])){
+					l.add(this.sex[i]);
+				}
 			}
 			data.put("sex", l);
 		}	
 		if(attributesToAdd.contains("age")){
 			List<String> l = new ArrayList<String>();
-			for(int i = 0; i < this.age.length; i++){
-				l.add(this.age[i]);
+			for(int i = 0; i < this.numAnimals; i++){
+				if(!l.contains(this.age[i])){
+					l.add(this.age[i]);
+				}
 			}
 			data.put("age", l);
 		}	
 		if(attributesToAdd.contains("breed")){
 			List<String> l = new ArrayList<String>();
-			for(int i = 0; i < this.breed.length; i++){
-				l.add(this.breed[i]);
+			for(int i = 0; i < this.numAnimals; i++){
+				if(!l.contains(this.breed[i])){
+					l.add(this.breed[i]);
+				}
 			}
 			data.put("breed", l);
 		}
 		if(attributesToAdd.contains("color")){
 			List<String> l = new ArrayList<String>();
-			for(int i = 0; i < this.color.length; i++){
-				l.add(this.color[i]);
+			for(int i = 0; i < this.numAnimals; i++){
+				if(!l.contains(this.color[i])){
+					l.add(this.color[i]);
+				}
 			}
 			data.put("color", l);
 		}
 		return data;
 	}
-	public List<String> getOutcomes(){
+	/*
+	 * Get possible outcome values
+	 */
+	public List<String> getPossibleOutcomeValues(){
 		List<String> l = new ArrayList<String>();
 		for(int i = 0; i < this.outcomeType.length; i++){
-			l.add(this.outcomeType[i]);
+			if(!l.contains(this.outcomeType[i])){
+				l.add(this.outcomeType[i]);
+			}
 		}
 		return l;
 	}

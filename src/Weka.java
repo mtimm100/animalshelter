@@ -37,12 +37,12 @@ public class Weka {
 	 * @return Instances object containing all animal Instances with their corresponding data from the csvp
 	 */
 	@SuppressWarnings("unchecked") //sorry
-	public Instances getSet(CSVParserNew csvP, Boolean isTraining){
+	public Instances getSet(CSVParserNew csvP, Boolean isTraining, int numAnimals){
 		this.isTraining = isTraining;
 		setupAtr();
 		this.set = new Instances("Animals", this.fvAttributes, 30000); //30000 is the initial set capacity
 		set.setClassIndex(this.numAttributes); //"class" (output) index is the last element in the set, equal to numAttributes
-		insertValues(csvP);
+		insertValues(csvP, numAnimals);
 		return this.set;
 	}
 	
@@ -135,9 +135,9 @@ public class Weka {
 	 * Grab the values from the dataset and insert them into the instances array "set"
 	 * @param csvP CSVParserNew object containing all of the arrays of data from the training or testing set
 	 */
-	private void insertValues(CSVParserNew csvP){
-		System.out.println("Inserting values into Instances array...");
-		for(int i = 0; i < csvP.getNumAnimals(); i++){
+	private void insertValues(CSVParserNew csvP, int numAnimals){
+		//System.out.println("Inserting values into Instances array...");
+		for(int i = 0; i < (numAnimals); i++){
 			//create the instance of the animal
 			int index = 0;
 			Instance animal = new DenseInstance(this.numAttributes+1);
@@ -175,7 +175,7 @@ public class Weka {
 			//add the animal to the set
 			this.set.add(animal);
 		}
-		System.out.println("Finished inserting values into Instances array.");
+		//System.out.println("Finished inserting values into Instances array.");
 	}
 	
 }
