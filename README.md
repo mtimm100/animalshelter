@@ -17,8 +17,6 @@ javac -cp weka.jar Tester.java CSVParserNew.java NeuralNet.java Weka.java Data.j
 java -cp weka.jar:. Tester
 
 It will then run the program showing the training/testing set size etc information.
-The artificial network will then begin running, displaying accuracy of classifications and the elapsed time it took once it finishes. 
-This may take a while considering the dataset is large.
-Once that finishes, the DTL algorithm will run almost instantaneously, producing an accuracy and elapsed time on the screen.
+The DTL and ANN will then run, building classifiers on the training set, then outputting the predicted outcomes to outcomes.arff.
 
 
