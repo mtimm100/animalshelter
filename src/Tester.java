@@ -32,7 +32,7 @@ public class Tester {
 		CSVParserNew csvPTesting = new CSVParserNew("test.csv", false);
 		csvPTesting.readCSV();
 		
-		System.out.println("Running ANN*****************");
+		//System.out.println("Running ANN*****************");
 		/*
 		//Train neural network with increasing sizes of learning data
 		for (int i = 1; (i*10) <= 1000; i++){
@@ -59,16 +59,9 @@ public class Tester {
 		showInfoGains(trainingSet);
 		NeuralNet NN = new NeuralNet(trainingSet, 0.05, 0.1, 150, "6");
 		NN.evalNeuralNet();*/
-		Instances trainingSet = weka.getSet(csvPTraining, true, csvPTraining.getNumAnimals());
-		long lStartTime = System.currentTimeMillis();
-		NeuralNet NN = new NeuralNet(trainingSet, 0.05, 0.1, 150, "6");
-		System.out.println("ANN Accuracy: "+ NN.evalNeuralNet());
-		//print elapsed time in ms
-		long lEndTime = System.currentTimeMillis();
+		
 
-		long difference = lEndTime - lStartTime;
 
-		System.out.println("Elapsed time (ANN): " + difference+ " ms");
 		/*
 		//test the learning rate vs. error rate
 		for(double i = 4; i < 10; i = i+.5){
@@ -115,17 +108,29 @@ public class Tester {
 		
 		List<Instance> testingSet = instances.subList((int)(csvPTraining.getNumAnimals()*.8),csvPTraining.getNumAnimals());
 		Data dataTest = new Data(attributeNames, attributesAndTheirPossibleValues, outcomes, testingSet);
-		lStartTime = System.currentTimeMillis();
+		long lStartTime = System.currentTimeMillis();
 		DecisionTreeLearning dtl = new DecisionTreeLearning();
 		dtl.train(dataTrain);     
 		System.out.println("DTL Accuracy: " + dtl.test(dataTest));
+		//print elapsed time in ms
+		long lEndTime = System.currentTimeMillis();
+
+		long difference = lEndTime - lStartTime;
+
+		System.out.println("Elapsed time (DTL): " + difference+ " ms");
+		System.out.println("Running ANN*****************");
+		Instances trainingSet = weka.getSet(csvPTraining, true, 	csvPTraining.getNumAnimals());
+		lStartTime = System.currentTimeMillis();
+		NeuralNet NN = new NeuralNet(trainingSet, 0.05, 0.1, 120, "6");
+		System.out.println("ANN Accuracy: "+ NN.evalNeuralNet());
 		//print elapsed time in ms
 		lEndTime = System.currentTimeMillis();
 
 		difference = lEndTime - lStartTime;
 
-		System.out.println("Elapsed time (DTL): " + difference+ " ms");
-		
+		System.out.println("Elapsed time (ANN): " + difference+ " ms");
+
+
 		/*
 		for(int i = 1; (i*10) <= 1000; i++){
 			List<Instance> trainingSet1 = instances.subList(0, i*10);
