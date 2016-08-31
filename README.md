@@ -30,7 +30,7 @@ Increasing the number of epochs reduces the error rate for the neural network. T
 
 Further work includes implementing more machine learning algorithms to compare results, adding the decision tree pruning, and implementing a GUI for viewing visualizations of shelter data and predicting outcomes of new animals. Shelters could use the GUI system for incoming animals to see what new animals may need more help in getting adopted. This includes giving the animal a name and spaying/neutering the animal if it is intact. 
 
-The meaning of the animals' names may also have an effect - for example, naming a cat "Lucifer" (my cat's name) vs. "Tiger" (everyone else's cats' name) may affect people's opinion of the animal.
+The meaning of the animals' names may also have an effect - for example, naming a cat "Lucifer" (my cat's name) vs. "Tiger" (everyone else's cats' name) may affect people's opinion of the animal. Knowing if this is an important consideration would be useful to shelters, since it would show what types of names may increase the animals' likelihoods of adoption.
 
 
 
